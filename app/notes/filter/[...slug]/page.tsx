@@ -11,16 +11,16 @@ export default async function Notes({ params }: NotesProps) {
 	const queryClient = new QueryClient()
 
 	const { slug } = await params
-	const category = slug[0] === 'all' ? undefined : slug[0]
+	const tag = slug[0] === 'all' ? undefined : slug[0]
 
 	await queryClient.prefetchQuery({
-		queryKey: ['notes', '', 1, category],
-		queryFn: () => fetchNotes('', 1, category),
+		queryKey: ['notes', '', tag, 1],
+		queryFn: () => fetchNotes({ searchText: '', tag, page: 1 }),
 	})
 
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
-			<NotesClient key={category} category={category} />
+			<NotesClient key={tag} tag={tag} />
 		</HydrationBoundary>
 	)
 }
