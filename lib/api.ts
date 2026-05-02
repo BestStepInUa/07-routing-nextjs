@@ -17,6 +17,7 @@ const api = axios.create({
 export const fetchNotes = async (
 	searchText: string,
 	page: number,
+	tag?: string,
 ): Promise<{ notes: Note[]; totalPages: number }> => {
 	const {
 		data: { notes, totalPages },
@@ -25,6 +26,7 @@ export const fetchNotes = async (
 			search: searchText,
 			page: page,
 			perPage: 12,
+			tag,
 		},
 	})
 
@@ -51,4 +53,3 @@ export const deleteNote = async (id: string): Promise<Note> => {
 
 	return data
 }
-

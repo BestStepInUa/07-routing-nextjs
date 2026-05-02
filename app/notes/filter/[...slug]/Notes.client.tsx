@@ -14,14 +14,14 @@ import NoteForm from '@/components/NoteForm'
 import Modal from '@/components/Modal'
 import NoteList from '@/components/NoteList'
 
-export default function NotesClient() {
+export default function NotesClient({ category }: { category?: string }) {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [searchQuery, setSearchQuery] = useState('')
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const { data } = useQuery<{ notes: Note[]; totalPages: number }, Error>({
-		queryKey: ['notes', searchQuery, currentPage],
-		queryFn: () => fetchNotes(searchQuery, currentPage),
+		queryKey: ['notes', searchQuery, currentPage, category],
+		queryFn: () => fetchNotes(searchQuery, currentPage, category),
 		placeholderData: (previousData) => previousData,
 		refetchOnMount: false,
 	})
@@ -63,4 +63,3 @@ export default function NotesClient() {
 		</div>
 	)
 }
-
