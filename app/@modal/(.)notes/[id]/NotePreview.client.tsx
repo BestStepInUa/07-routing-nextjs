@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 import { fetchNoteById } from '@/lib/api'
 import InterceptionModal from '@/components/InterceptionModal'
@@ -10,6 +10,9 @@ import css from './NotePreview.module.css'
 
 export default function NotePreviewClient() {
 	const { id } = useParams<{ id: string }>()
+
+	const router = useRouter()
+	const close = () => router.back()
 
 	const {
 		data: note,
@@ -40,6 +43,9 @@ export default function NotePreviewClient() {
 					<p className={css.content}>{note.content}</p>
 					<p className={css.date}>{formattedDate}</p>
 				</div>
+				<button type='button' className={css.backBtn} onClick={close}>
+					Close
+				</button>
 			</div>
 		</InterceptionModal>
 	)

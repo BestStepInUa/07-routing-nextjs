@@ -15,14 +15,18 @@ import { Note } from '@/types/note'
 
 import css from './NotesPage.module.css'
 
-export default function NotesClient({ category }: { category?: string }) {
+type NotesClientProps = {
+	tag?: string
+}
+
+export default function NotesClient({ tag }: NotesClientProps) {
 	const [currentPage, setCurrentPage] = useState(1)
 	const [searchQuery, setSearchQuery] = useState('')
 	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	const { data } = useQuery<{ notes: Note[]; totalPages: number }, Error>({
-		queryKey: ['notes', searchQuery, currentPage, category],
-		queryFn: () => fetchNotes(searchQuery, currentPage, category),
+		queryKey: ['notes', searchQuery, tag, currentPage],
+		queryFn: () => fetchNotes({ searchText: searchQuery, tag, page: currentPage }),
 		placeholderData: (previousData) => previousData,
 		refetchOnMount: false,
 	})
