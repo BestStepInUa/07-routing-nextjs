@@ -33,7 +33,7 @@ export default function NotePreviewClient() {
 		: `Created at: ${note.createdAt}`
 
 	return (
-		<InterceptionModal>
+		<InterceptionModal onClose={close}>
 			<div className={css.container}>
 				<div className={css.item}>
 					<div className={css.header}>
