@@ -1,18 +1,19 @@
 'use client'
 
-import { fetchNotes } from '@/lib/api'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 
-import { Note } from '@/types/note'
-
-import css from './NotesPage.module.css'
+import { fetchNotes } from '@/lib/api'
 import SearchBox from '@/components/SearchBox'
 import Pagination from '@/components/Pagination'
 import NoteForm from '@/components/NoteForm'
 import Modal from '@/components/Modal'
 import NoteList from '@/components/NoteList'
+
+import { Note } from '@/types/note'
+
+import css from './NotesPage.module.css'
 
 export default function NotesClient({ category }: { category?: string }) {
 	const [currentPage, setCurrentPage] = useState(1)

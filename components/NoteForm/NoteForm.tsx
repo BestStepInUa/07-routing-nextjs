@@ -2,8 +2,9 @@ import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from 'formik'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import css from './NoteForm.module.css'
 import { createNote } from '@/lib/api'
+
+import css from './NoteForm.module.css'
 
 const ValidationCreateNoteFormSchema = Yup.object().shape({
 	title: Yup.string()

@@ -1,9 +1,12 @@
 'use client'
-import InterceptionModal from '@/components/InterceptionModal/InterceptionModal'
-import css from './NotePreview.module.css'
-import { fetchNoteById } from '@/lib/api'
+
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
+
+import { fetchNoteById } from '@/lib/api'
+import InterceptionModal from '@/components/InterceptionModal'
+
+import css from './NotePreview.module.css'
 
 export default function NotePreviewClient() {
 	const { id } = useParams<{ id: string }>()

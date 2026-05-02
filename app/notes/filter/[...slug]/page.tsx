@@ -1,5 +1,6 @@
-import { fetchNotes } from '@/lib/api'
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
+
+import { fetchNotes } from '@/lib/api'
 import NotesClient from './Notes.client'
 
 type NotesProps = {
@@ -11,7 +12,6 @@ export default async function Notes({ params }: NotesProps) {
 
 	const { slug } = await params
 	const category = slug[0] === 'all' ? undefined : slug[0]
-	console.log(category)
 
 	await queryClient.prefetchQuery({
 		queryKey: ['notes', '', 1, category],

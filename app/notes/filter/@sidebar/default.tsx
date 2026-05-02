@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 import css from './SidebarNotes.module.css'
 
 const sidebarItems = ['Work', 'Personal', 'Meeting', 'Shopping', 'Todo']
